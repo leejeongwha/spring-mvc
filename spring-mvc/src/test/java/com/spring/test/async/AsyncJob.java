@@ -14,4 +14,9 @@ public class AsyncJob {
 
 		return new AsyncResult<Integer>(-2);
 	}
+
+	@Async
+	public void print(int i) {
+		System.out.println(i + "");
+	}
 }
