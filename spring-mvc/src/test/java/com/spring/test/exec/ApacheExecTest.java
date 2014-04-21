@@ -3,6 +3,9 @@ package com.spring.test.exec;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.NumberFormat;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -43,5 +46,23 @@ public class ApacheExecTest {
 		}
 
 		System.out.println(new String(baos.toByteArray(), "EUC-KR"));
+	}
+
+	/**
+	 * 호스트 및 IP 출력
+	 * 
+	 * @throws UnknownHostException
+	 */
+	@Test
+	public void printHostNameIp() throws UnknownHostException {
+		System.out.println(InetAddress.getLocalHost().getHostName());
+		System.out.println(InetAddress.getLocalHost().getHostAddress());
+	}
+
+	@Test
+	public void NumberTest() {
+		NumberFormat clsNF = NumberFormat.getInstance();
+
+		System.out.println(clsNF.format(30002342));
 	}
 }
