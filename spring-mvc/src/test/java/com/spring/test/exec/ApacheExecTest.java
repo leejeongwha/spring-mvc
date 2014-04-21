@@ -18,7 +18,7 @@ public class ApacheExecTest {
 	}
 
 	/**
-	 * 커맨드 실행(쉘 실행은 Runtime.getRuntime().exec 메서드 사용하면 된다고 함)
+	 * 커맨드 실행(쉘 실행은 Runtime.getRuntime().exec 메서드 사용하면 된다고 함.)
 	 * 
 	 * @throws UnsupportedEncodingException
 	 */
