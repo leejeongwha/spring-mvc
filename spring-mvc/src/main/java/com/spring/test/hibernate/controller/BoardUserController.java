@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,10 +52,17 @@ public class BoardUserController {
 	public String get(@PathVariable String id, Model model) throws Exception {
 		BoardUser boardUserById = boardUserDAO.getBoardUserById(id);
 
-		logger.info(boardUserById.getUserName());
+		logger.info("user name = " + boardUserById.getUserName());
 
 		model.addAttribute("boardUser", boardUserById);
 
 		return "board/user";
+	}
+
+	@RequestMapping("/evict")
+	public String evict() {
+		boardUserDAO.cacheEvict();
+
+		return "redirect:/board/list";
 	}
 }

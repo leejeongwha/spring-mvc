@@ -21,4 +21,6 @@ public interface BoardUserDAO {
 	boolean updateBoardUser(BoardUser user) throws Exception;
 
 	int getUserCountById(String id) throws Exception;
+
+	void cacheEvict();
 }

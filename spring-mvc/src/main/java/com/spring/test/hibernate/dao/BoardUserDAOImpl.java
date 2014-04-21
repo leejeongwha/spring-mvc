@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -39,6 +41,7 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value = "default")
 	public BoardUser getBoardUserById(String id) throws Exception {
 		return getHibernateTemplate().get(BoardUser.class, id);
 	}
@@ -77,5 +80,10 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 	public int getUserCountById(String id) throws Exception {
 		return getHibernateTemplate().find(
 				"FROM board_user WHERE id = '" + id + "'").size();
+	}
+
+	@Override
+	@CacheEvict(value = "default", allEntries = true)
+	public void cacheEvict() {
 	}
 }
