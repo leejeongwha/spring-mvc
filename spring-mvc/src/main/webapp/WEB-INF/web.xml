@@ -28,6 +28,12 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>	
-
+	</servlet-mapping>
+	
+	<jsp-config>
+    	<taglib>
+        	<taglib-uri>/tlds/custom-taglib</taglib-uri>
+        	<taglib-location>/WEB-INF/tlds/custom-taglib.tld</taglib-location>
+    	</taglib>
+  	</jsp-config>
 </web-app>

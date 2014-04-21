@@ -6,7 +6,9 @@ import com.spring.test.hibernate.model.BoardUser;
 
 public interface BoardUserDAO {
 
-	List<BoardUser> getBoardUserList(int st, int ed) throws Exception;
+	List<BoardUser> getBoardUserList(int page, int rownum) throws Exception;
+
+	int getTotalBoardUserCount();
 
 	BoardUser getBoardUserById(String id) throws Exception;
 

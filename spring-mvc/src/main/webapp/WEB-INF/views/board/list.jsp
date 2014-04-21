@@ -29,5 +29,9 @@
 		</tr>
 	</c:forEach>
 </table>
+<div align="center">
+<%@ include file="paging.jsp" %>
+</div>
+
 </body>
 </html>
