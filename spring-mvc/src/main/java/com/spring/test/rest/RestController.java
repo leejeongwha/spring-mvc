@@ -10,6 +10,11 @@ import com.spring.test.hibernate.model.BoardUser;
 
 @Controller
 public class RestController {
+	/**
+	 * Spring이 알아서 해당 객체에 맞는 messageConverter를 반환
+	 * 
+	 * @return
+	 */
 	@RequestMapping("restJson")
 	@ResponseBody
 	public User restJson() {
@@ -31,6 +36,11 @@ public class RestController {
 		return "rest/result";
 	}
 
+	/**
+	 * Spring이 알아서 해당 객체에 맞는 messageConverter를 반환
+	 * 
+	 * @return
+	 */
 	@RequestMapping("restXml")
 	@ResponseBody
 	public UserXml restXml() {

@@ -14,6 +14,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<import resource="root-context-datasource.xml"/>
+	<import resource="root-context-batch.xml"/>
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans	-->
 	<context:component-scan base-package="com.spring.test">
@@ -41,10 +42,10 @@
 	
 	<bean id="messageSource"
 	class="org.springframework.context.support.ResourceBundleMessageSource">
-	<property name="basenames">
-		<list>
-			<value>properties.message</value>
-		</list>
-	</property>
-   </bean>
+		<property name="basenames">
+			<list>
+				<value>properties.message</value>
+			</list>
+		</property>
+	</bean>
 </beans>
