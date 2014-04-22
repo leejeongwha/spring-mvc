@@ -10,14 +10,14 @@ public class BoardUser {
 	private String id;
 
 	private String passwd;
-	
+
 	@Column(name = "user_name")
 	private String userName;
-	
+
 	private int age;
-	
+
 	private String role;
-	
+
 	public String getId() {
 		return id;
 	}

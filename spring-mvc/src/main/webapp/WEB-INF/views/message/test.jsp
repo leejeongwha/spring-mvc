@@ -12,5 +12,11 @@
 ${testMessage}
 <br>
 ${testMessage1}
+
+
+<script type="text/javascript">
+console.log ('${testMessage}');
+console.log ('${testMessage1}');
+</script>
 </body>
 </html>
