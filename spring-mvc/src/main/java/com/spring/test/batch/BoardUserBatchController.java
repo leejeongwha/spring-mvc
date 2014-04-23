@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameter;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BoardUserBatchController {
+	private static final Logger logger = LoggerFactory
+			.getLogger(BoardUserBatchController.class);
+
 	@Autowired
 	JobLauncher jobLauncher;
 
@@ -30,7 +35,7 @@ public class BoardUserBatchController {
 
 		JobExecution run = jobLauncher.run(importUserJob, jobParameters);
 
-		System.out.println(run.getStatus());
+		logger.debug("Batch Status : {}", run.getStatus());
 
 		return "redirect:/board/list";
 	}
