@@ -39,6 +39,9 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 		return getHibernateTemplate().find("FROM board_user").size();
 	}
 
+	/*
+	 * 캐쉬 적용
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	@Cacheable(value = "default")

@@ -13,10 +13,10 @@ public class BoardUserItemProcessor implements
 	public BoardUser process(BoardUser boardUser) throws Exception {
 		final String userName = boardUser.getUserName().toUpperCase();
 
-		boardUser.setUserName(userName);
-
 		System.out.println("Converting (" + boardUser.getUserName()
 				+ ") into (" + userName + ")");
+
+		boardUser.setUserName(userName);
 
 		return boardUser;
 	}

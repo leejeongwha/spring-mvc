@@ -1,7 +1,7 @@
 package com.spring.test.batch;
 
-import org.hibernate.SessionFactory;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -23,6 +23,13 @@ import org.springframework.orm.hibernate3.HibernateOperations;
 
 import com.spring.test.hibernate.model.BoardUser;
 
+/**
+ * @author nhn
+ * @EnableBatchProcessing annotation has autowired bean listed below by default
+ *                        JobRepsitory, JobLauncher, JobRegistry,
+ *                        PlatformTransactionManager, JobBuilderFactory, and a
+ *                        StepBuilderFactory
+ */
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
@@ -67,11 +74,19 @@ public class BatchConfiguration {
 
 	// end::readerwriterprocessor[]
 
+	@Bean
+	public JobExecutionListener listener() {
+		return new BoardUserItemListener();
+	}
+
 	// tag::jobstep[]
 	@Bean
-	public Job importUserJob(JobBuilderFactory jobs, Step s1) {
-		return jobs.get("importUserJob").incrementer(new RunIdIncrementer())
-				.flow(s1).end().build();
+	public Job importUserJob(JobBuilderFactory jobs, Step s1,
+			JobExecutionListener listener) {
+
+		// incrementer create new job instance
+		return jobs.get("importUserJob").listener(listener)
+				.incrementer(new RunIdIncrementer()).flow(s1).end().build();
 	}
 
 	@Bean
