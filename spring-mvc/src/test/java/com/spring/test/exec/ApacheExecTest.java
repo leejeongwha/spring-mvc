@@ -1,11 +1,17 @@
 package com.spring.test.exec;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.Socket;
+import java.net.URL;
 import java.net.UnknownHostException;
-import java.text.NumberFormat;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -49,6 +55,82 @@ public class ApacheExecTest {
 	}
 
 	/**
+	 * ping 테스트
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void pingTest() throws Exception {
+		String host = "10.67.21.33";
+		String message = "SUCESS";
+
+		boolean isWindows = System.getProperty("os.name").toLowerCase()
+				.contains("win");
+
+		ProcessBuilder processBuilder = new ProcessBuilder("ping",
+				isWindows ? "-n" : "-c", "1", host);
+		Process proc = processBuilder.start();
+
+		int returnVal = proc.waitFor();
+
+		if (returnVal == 1) {
+			message = "FAIL";
+		}
+
+		System.out.println("status : " + message);
+	}
+
+	/**
+	 * 텔넷 테스트
+	 */
+	@Test
+	public void telnetTest() {
+		try {
+			String ip = "10.67.21.33";
+			int port = 80;
+
+			Socket s1 = new Socket(ip, port);
+			InputStream is = s1.getInputStream();
+			DataInputStream dis = new DataInputStream(is);
+			if (dis != null) {
+				System.out.println("Connected with ip " + ip + " and port "
+						+ port);
+			} else {
+				System.out.println("Connection invalid");
+			}
+
+			dis.close();
+			s1.close();
+		} catch (Exception e) {
+			System.out.println("Not Connected,Please enter proper input");
+		}
+	}
+
+	/**
+	 * url 테스트
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public void urlTest() throws IOException {
+		String strUrl = "http://www.naver.com";
+
+		try {
+			URL url = new URL(strUrl);
+			HttpURLConnection urlConn = (HttpURLConnection) url
+					.openConnection();
+			urlConn.connect();
+
+			assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
+		} catch (IOException e) {
+			System.err.println("Error creating HTTP connection");
+			e.printStackTrace();
+
+			throw e;
+		}
+	}
+
+	/**
 	 * 호스트 및 IP 출력
 	 * 
 	 * @throws UnknownHostException
@@ -59,10 +141,4 @@ public class ApacheExecTest {
 		System.out.println(InetAddress.getLocalHost().getHostAddress());
 	}
 
-	@Test
-	public void NumberTest() {
-		NumberFormat clsNF = NumberFormat.getInstance();
-
-		System.out.println(clsNF.format(30002342));
-	}
 }
