@@ -138,7 +138,7 @@
             <version>2.3.2</version>
         </dependency>
         
-        <!-- ETC -->
+        <!-- JSON -->
         <dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -149,10 +149,17 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.5</version>
 		</dependency>
+		
+		<!-- ETC -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-exec</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.7.3</version>
 		</dependency>
 		
 		<!-- Test -->
