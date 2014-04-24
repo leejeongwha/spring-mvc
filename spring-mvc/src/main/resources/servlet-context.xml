@@ -21,9 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- use-default-filters="true" : @Controller , @Component, @Repository @Service are auto included -->
 	<context:component-scan base-package="com.spring.test" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
 	</context:component-scan>	
-	
 	
 </beans:beans>

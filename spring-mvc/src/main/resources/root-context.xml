@@ -20,10 +20,10 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	<context:annotation-config />
+	
 	<!-- Enables the Spring Scheduler -->
 	<task:annotation-driven/>
-	
-	<context:annotation-config />
 	
 	<!-- Enables the Spring Cache -->
 	<cache:annotation-driven />

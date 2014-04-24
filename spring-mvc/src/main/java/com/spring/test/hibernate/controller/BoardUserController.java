@@ -104,6 +104,12 @@ public class BoardUserController {
 		return "board/excel";
 	}
 
+	/**
+	 * LinkedHashMap을 사용하여야 순서대로 정렬됨
+	 * 
+	 * @param boardUserList
+	 * @return
+	 */
 	private List<LinkedHashMap> makeExcelData(List<BoardUser> boardUserList) {
 		List<LinkedHashMap> excelStatistics = new ArrayList<LinkedHashMap>();
 
