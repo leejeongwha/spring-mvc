@@ -64,11 +64,9 @@ public class ApacheExecTest {
 		String host = "10.67.21.33";
 		String message = "SUCESS";
 
-		boolean isWindows = System.getProperty("os.name").toLowerCase()
-				.contains("win");
+		boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
 
-		ProcessBuilder processBuilder = new ProcessBuilder("ping",
-				isWindows ? "-n" : "-c", "1", host);
+		ProcessBuilder processBuilder = new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", host);
 		Process proc = processBuilder.start();
 
 		int returnVal = proc.waitFor();
@@ -93,8 +91,7 @@ public class ApacheExecTest {
 			InputStream is = s1.getInputStream();
 			DataInputStream dis = new DataInputStream(is);
 			if (dis != null) {
-				System.out.println("Connected with ip " + ip + " and port "
-						+ port);
+				System.out.println("Connected with ip " + ip + " and port " + port);
 			} else {
 				System.out.println("Connection invalid");
 			}
@@ -117,8 +114,7 @@ public class ApacheExecTest {
 
 		try {
 			URL url = new URL(strUrl);
-			HttpURLConnection urlConn = (HttpURLConnection) url
-					.openConnection();
+			HttpURLConnection urlConn = (HttpURLConnection)url.openConnection();
 			urlConn.connect();
 
 			assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());

@@ -1,5 +1,6 @@
 package com.spring.test.etc;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -23,8 +24,7 @@ public class StringTest {
 		try {
 			jobCronExp = new CronExpression(cronStr);
 		} catch (ParseException e) {
-			throw new IllegalArgumentException("cannot parse cron expression:"
-					+ cronStr, e);
+			throw new IllegalArgumentException("cannot parse cron expression:" + cronStr, e);
 		}
 
 		System.out.println(jobCronExp.isSatisfiedBy(new Date()));

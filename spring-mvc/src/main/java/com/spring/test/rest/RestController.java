@@ -28,8 +28,7 @@ public class RestController {
 	@RequestMapping("restJsonFromString")
 	public String restJsonFromString(Model model) {
 		RestTemplate template = new RestTemplate();
-		User forObject = template.getForObject(
-				"http://localhost:8080/restJson", User.class);
+		User forObject = template.getForObject("http://localhost:8080/restJson", User.class);
 
 		model.addAttribute("result", forObject);
 
@@ -54,8 +53,7 @@ public class RestController {
 	@RequestMapping("restXmlFromString")
 	public String restXmlFromString(Model model) {
 		RestTemplate template = new RestTemplate();
-		User forObject = template.getForObject("http://localhost:8080/restXml",
-				User.class);
+		User forObject = template.getForObject("http://localhost:8080/restXml", User.class);
 
 		model.addAttribute("result", forObject);
 

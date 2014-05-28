@@ -26,21 +26,18 @@ import com.spring.test.hibernate.model.PagingTag;
 @Controller
 @RequestMapping("/board")
 public class BoardUserController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	private BoardUserDAO boardUserDAO;
 
 	@RequestMapping("/list")
 	public String list(Model model, PagingTag pagingTag) throws Exception {
-		List<BoardUser> boardUserList = boardUserDAO.getBoardUserList(
-				pagingTag.getCurrentPage(), pagingTag.getRecordsPerPage());
+		List<BoardUser> boardUserList = boardUserDAO.getBoardUserList(pagingTag.getCurrentPage(), pagingTag.getRecordsPerPage());
 
 		model.addAttribute("boardUserList", boardUserList);
 
-		model.addAttribute("totalRecordCount",
-				boardUserDAO.getTotalBoardUserCount());
+		model.addAttribute("totalRecordCount", boardUserDAO.getTotalBoardUserCount());
 		model.addAttribute("recordsPerPage", pagingTag.getRecordsPerPage());
 
 		return "board/list";
@@ -80,8 +77,7 @@ public class BoardUserController {
 	 */
 	@RequestMapping("excel")
 	public String excel(Model model) throws Exception {
-		final List<LinkedHashMap> excelStatistics = makeExcelData(boardUserDAO
-				.getBoardUserList(1, 100));
+		final List<LinkedHashMap> excelStatistics = makeExcelData(boardUserDAO.getBoardUserList(1, 100));
 
 		ArrayList<List<String>> dataElementList = new ArrayList<List<String>>();
 
@@ -93,7 +89,7 @@ public class BoardUserController {
 			Set<Entry<String, String>> entrySet = map.entrySet();
 			Iterator<Entry<String, String>> iterator = entrySet.iterator();
 			while (iterator.hasNext()) {
-				Map.Entry entry = (Map.Entry) iterator.next();
+				Map.Entry entry = (Map.Entry)iterator.next();
 				dataElement.add(entry.getValue().toString());
 			}
 			dataElementList.add(dataElement);

@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BoardUserBatchController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(BoardUserBatchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardUserBatchController.class);
 
 	@Autowired
 	JobLauncher jobLauncher;

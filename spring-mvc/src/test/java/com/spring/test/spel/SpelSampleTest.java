@@ -17,6 +17,9 @@ public class SpelSampleTest {
 	public void setUp() throws Exception {
 	}
 
+	/**
+	 * value 어노테이션 테스트
+	 */
 	@Test
 	public void test() {
 		System.out.println(spelSample.getRandom());

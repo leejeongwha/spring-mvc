@@ -10,7 +10,7 @@ import com.spring.test.hello.HomeController;
 @Service
 public class SchedulerTest {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Scheduled(cron = "0/5 * * * * ?")
 	public void test1() {
 		//logger.info("test1 : " + System.currentTimeMillis());

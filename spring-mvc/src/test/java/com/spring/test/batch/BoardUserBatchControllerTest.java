@@ -54,11 +54,9 @@ public class BoardUserBatchControllerTest {
 
 	@Test
 	public void test() throws Exception {
-		jobLauncherTestUtils.launchJob(jobLauncherTestUtils
-				.getUniqueJobParameters());
+		jobLauncherTestUtils.launchJob(jobLauncherTestUtils.getUniqueJobParameters());
 
-		List<BoardUser> find = (List<BoardUser>) hibernateTemplate
-				.find("FROM board_user WHERE id = 'admin19'");
+		List<BoardUser> find = (List<BoardUser>)hibernateTemplate.find("FROM board_user WHERE id = 'admin19'");
 
 		assertNotNull(find.get(0));
 

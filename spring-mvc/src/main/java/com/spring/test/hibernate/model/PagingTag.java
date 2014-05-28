@@ -100,8 +100,7 @@ public class PagingTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			HttpServletRequest request = (HttpServletRequest) pageContext
-					.getRequest();
+			HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
 
 			findStartEndIndex();
 
@@ -114,8 +113,7 @@ public class PagingTag extends TagSupport {
 			lastPage = new Page(lastIndex, getURL(lastIndex));
 
 			if (currentPage - 1 > 0) {
-				previousPage = new Page(currentPage - 1,
-						getURL(currentPage - 1));
+				previousPage = new Page(currentPage - 1, getURL(currentPage - 1));
 			} else {
 				previousPage = firstPage;
 			}
@@ -158,8 +156,7 @@ public class PagingTag extends TagSupport {
 		startIndex = 1;
 		while (true) {
 			endIndex = startIndex + interval - 1;
-			if (currentPage >= startIndex && currentPage <= endIndex
-					&& endIndex <= lastIndex) {
+			if (currentPage >= startIndex && currentPage <= endIndex && endIndex <= lastIndex) {
 				break;
 			}
 
@@ -195,17 +192,15 @@ public class PagingTag extends TagSupport {
 	 */
 	private String getHref(HttpServletRequest request) {
 
-		String href = (String) request
-				.getAttribute("javax.servlet.forward.request_uri");
+		String href = (String)request.getAttribute("javax.servlet.forward.request_uri");
 
 		StringBuffer sb = new StringBuffer(256);
 		sb.append(href);
 
 		int i = 0;
-		@SuppressWarnings("unchecked")
-		Enumeration<String> e = request.getParameterNames();
+		@SuppressWarnings("unchecked") Enumeration<String> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
-			String param = (String) e.nextElement();
+			String param = (String)e.nextElement();
 			if (!param.equals("currentPage")) {
 				String[] values = request.getParameterValues(param);
 				for (String value : values) {

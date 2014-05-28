@@ -6,8 +6,7 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 
 public class BoardUserItemListener implements JobExecutionListener {
-	private static final Logger logger = LoggerFactory
-			.getLogger(BoardUserItemListener.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardUserItemListener.class);
 
 	@Override
 	public void afterJob(JobExecution jobexecution) {

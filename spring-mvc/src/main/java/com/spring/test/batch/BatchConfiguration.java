@@ -45,8 +45,7 @@ public class BatchConfiguration {
 			{
 				setLineTokenizer(new DelimitedLineTokenizer() {
 					{
-						setNames(new String[] { "id", "passwd", "userName",
-								"age", "role" });
+						setNames(new String[] {"id", "passwd", "userName", "age", "role"});
 					}
 				});
 				setFieldSetMapper(new BeanWrapperFieldSetMapper<BoardUser>() {
@@ -81,20 +80,15 @@ public class BatchConfiguration {
 
 	// tag::jobstep[]
 	@Bean
-	public Job importUserJob(JobBuilderFactory jobs, Step s1,
-			JobExecutionListener listener) {
+	public Job importUserJob(JobBuilderFactory jobs, Step s1, JobExecutionListener listener) {
 
 		// incrementer create new job instance
-		return jobs.get("importUserJob").listener(listener)
-				.incrementer(new RunIdIncrementer()).flow(s1).end().build();
+		return jobs.get("importUserJob").listener(listener).incrementer(new RunIdIncrementer()).flow(s1).end().build();
 	}
 
 	@Bean
-	public Step step1(StepBuilderFactory stepBuilderFactory,
-			ItemReader<BoardUser> reader, ItemWriter<BoardUser> writer,
-			ItemProcessor<BoardUser, BoardUser> processor) {
-		return stepBuilderFactory.get("step1").<BoardUser, BoardUser> chunk(10)
-				.reader(reader).processor(processor).writer(writer).build();
+	public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader<BoardUser> reader, ItemWriter<BoardUser> writer, ItemProcessor<BoardUser, BoardUser> processor) {
+		return stepBuilderFactory.get("step1").<BoardUser, BoardUser> chunk(10).reader(reader).processor(processor).writer(writer).build();
 	}
 	// end::jobstep[]
 }

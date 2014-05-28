@@ -16,8 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.test.hibernate.model.BoardUser;
 
 @Repository
-public class BoardUserDAOImpl extends HibernateDaoSupport implements
-		BoardUserDAO {
+public class BoardUserDAOImpl extends HibernateDaoSupport implements BoardUserDAO {
 	@Autowired
 	public BoardUserDAOImpl(SessionFactory sessionFactory) {
 		this.setSessionFactory(sessionFactory);
@@ -26,12 +25,10 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<BoardUser> getBoardUserList(int page, int rownum)
-			throws Exception {
+	public List<BoardUser> getBoardUserList(int page, int rownum) throws Exception {
 		DetachedCriteria criteria = DetachedCriteria.forClass(BoardUser.class);
 		criteria.addOrder(Order.desc("id"));
-		return (List<BoardUser>) getHibernateTemplate().findByCriteria(
-				criteria, (page - 1) * rownum, rownum);
+		return (List<BoardUser>)getHibernateTemplate().findByCriteria(criteria, (page - 1) * rownum, rownum);
 	}
 
 	@Override
@@ -66,8 +63,7 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 	@Override
 	@Transactional
 	public boolean removeBoardUserById(String id) throws Exception {
-		getHibernateTemplate().delete(
-				getHibernateTemplate().get(BoardUser.class, id));
+		getHibernateTemplate().delete(getHibernateTemplate().get(BoardUser.class, id));
 		return true;
 	}
 
@@ -81,8 +77,7 @@ public class BoardUserDAOImpl extends HibernateDaoSupport implements
 	@Override
 	@Transactional(readOnly = true)
 	public int getUserCountById(String id) throws Exception {
-		return getHibernateTemplate().find(
-				"FROM board_user WHERE id = '" + id + "'").size();
+		return getHibernateTemplate().find("FROM board_user WHERE id = '" + id + "'").size();
 	}
 
 	@Override
