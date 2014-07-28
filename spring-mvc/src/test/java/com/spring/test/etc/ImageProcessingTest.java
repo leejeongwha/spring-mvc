@@ -27,7 +27,7 @@ public class ImageProcessingTest {
 
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("나눔고딕", Font.BOLD, 12));
-		g.drawString("안녕하세요", 25, 25);
+		g.drawString("안녕하세요 하하하", 25, 25);
 
 		ImageIO.write(image, "jpg", new File("D:/nhnstore/img/L_021_main_thumb_test.jpg"));
 		// response.getOutputStream().flush();
@@ -41,5 +41,7 @@ public class ImageProcessingTest {
 	public void folderTest() {
 		System.out.println(new java.io.File("").getAbsolutePath());
 		System.out.println(ImageProcessingTest.class.getClassLoader().getResource("").getPath());
+		System.out.println(System.getProperty("java.io.tmpdir"));
+
 	}
 }

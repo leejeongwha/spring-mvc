@@ -24,6 +24,14 @@
 	<!-- use-default-filters="true" : @Controller , @Component, @Repository @Service are auto included -->
 	<context:component-scan base-package="com.spring.test" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
-	</context:component-scan>	
+	</context:component-scan>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/*"/>
+			<beans:bean class="com.spring.test.interceptor.ControllerLoggingInterceptor">
+			</beans:bean>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
