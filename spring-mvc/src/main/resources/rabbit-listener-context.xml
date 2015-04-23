@@ -1,0 +1,20 @@
+<? xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+
+    <rabbit:connection-factory id="connectionFactory" host="10.99.197.76" username="admin" password="admin" />
+    <rabbit:admin connection-factory="connectionFactory" />
+    <!-- Create myAnonymousQueue queue -->
+    <rabbit:queue id="myAnonymousQueue" />
+    <!-- create myExchange and bind myAnonymousQueue with my.routingkey.1 to the TUTORIAL-EXCHANGE-->
+    <rabbit:topic-exchange id="myExchange" name="TUTORIAL-EXCHANGE">
+        <rabbit:bindings>
+            <rabbit:binding queue="myAnonymousQueue" pattern="my.#.*"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+    <!-- instantiate TutorialListener -->
+    <bean id="aListener" class="com.spring.test.amqp.TutorialListener" />
+    <!-- glue the listener and myAnonymousQueue to the container-->
+    <rabbit:listener-container id="myListenerContainer" connection-factory="connectionFactory">
+        <rabbit:listener ref="aListener" queues="myAnonymousQueue" /></rabbit:listener-container>
+</beans>
