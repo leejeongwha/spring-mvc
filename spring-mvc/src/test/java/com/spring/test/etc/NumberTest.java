@@ -1,7 +1,5 @@
 package com.spring.test.etc;
 
-import static org.junit.Assert.*;
-
 import java.text.NumberFormat;
 
 import org.junit.Before;
@@ -21,5 +19,14 @@ public class NumberTest {
 		NumberFormat clsNF = NumberFormat.getInstance();
 
 		System.out.println(clsNF.format(30002342));
+	}
+
+	@Test
+	public void 소수점_2자리까지() {
+		Double dougle = 2.12356;
+
+		String format = String.format(new String("%.2f"), dougle);
+
+		System.out.println(format);
 	}
 }

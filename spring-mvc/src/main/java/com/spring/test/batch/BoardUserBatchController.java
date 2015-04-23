@@ -26,6 +26,11 @@ public class BoardUserBatchController {
 	@Resource
 	Job importUserJob;
 
+	/**
+	 * sample-data.csv로부터 데이터를 읽어 board_user 테이블에 데이터를 insert 함
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("batch")
 	public String handle() throws Exception {
 		Map<String, JobParameter> confMap = new HashMap<String, JobParameter>();
