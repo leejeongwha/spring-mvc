@@ -29,4 +29,18 @@ public class StringTest {
 
 		System.out.println(jobCronExp.isSatisfiedBy(new Date()));
 	}
+
+	@Test
+	public void testConrExpression() throws ParseException {
+		String expression = "0 0 1 1 * ?";
+		CronExpression cronExpression = new CronExpression(expression);
+
+		Date date = new Date();
+
+		for (int i = 0; i < 7; i++) {
+			Date nextValidDate = cronExpression.getNextValidTimeAfter(date);
+			System.out.println(nextValidDate);
+			date = nextValidDate;
+		}
+	}
 }
